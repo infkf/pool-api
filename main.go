@@ -42,6 +42,7 @@ func getDatabasePool() (*pgxpool.Pool, error) {
 // getDataHandler handles the /data endpoint and returns all data points as JSON
 func getDataHandler(pool *pgxpool.Pool) http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
+		w.Header().Set("Access-Control-Allow-Origin", "*")
 		// Query the database for all data points, ordered by timestamp
 		rows, err := pool.Query(context.Background(), "SELECT id, timestamp, percentage FROM pool_usage ORDER BY timestamp")
 		if err != nil {
