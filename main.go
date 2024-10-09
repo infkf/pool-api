@@ -84,7 +84,7 @@ func main() {
 	defer pool.Close()
 
 	// Set up the HTTP server
-	http.HandleFunc("/data", getDataHandler(pool))
+	http.HandleFunc("/pool-data", getDataHandler(pool))
 
 	// Start the server
 	port := ":8080"
